@@ -6,8 +6,12 @@ describe Contact do
     expect(FactoryGirl.build(:contact)).to be_valid
   end
 
+  it "has three phone numbers" do
+    expect(FactoryGirl.create(:contact).phones.count).to eq(3)
+  end
+
   it "is valid with a firstname, lastname and email" do
-    contact = Contact.new(
+    contact = FactoryGirl.build(:contact,
       firstname: 'Aaron',
       lastname: 'Sumner',
       email: 'tester@example.com')
@@ -53,17 +57,17 @@ describe Contact do
 
   describe "filter last name by letter" do
     before :each do
-      @smith = Contact.create(
+      @smith = FactoryGirl.create(:contact,
         firstname: 'John',
         lastname: 'Smith',
         email: 'jsmith@example.com'
       )
-      @jones = Contact.create(
+      @jones = FactoryGirl.create(:contact,
         firstname: 'Tim',
         lastname: 'Jones',
         email: 'tjones@example.com'
       )
-      @johnson = Contact.create(
+      @johnson = FactoryGirl.create(:contact,
         firstname: 'John',
         lastname: 'Johnson',
         email: 'jjohnson@example.com'
