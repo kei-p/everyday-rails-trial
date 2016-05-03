@@ -8,5 +8,9 @@ Rails.application.routes.draw do
   resources :contacts
   patch 'contacts/:id/hidden', to: 'contacts#hide_contact'
 
+  resources :contacts do
+    resources :phones
+  end
+
   root 'contacts#index'
 end
