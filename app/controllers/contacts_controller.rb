@@ -10,6 +10,15 @@ class ContactsController < ApplicationController
     else
       @contacts = Contact.order('lastname, firstname')
     end
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data Contact.to_csv(@contacts),
+          type: 'text/csv;charset=iso-8859-1;header=present',
+          dispositions: 'attachment;filename=contacts.csv'
+      end
+    end
   end
 
   # GET /contacts/1
