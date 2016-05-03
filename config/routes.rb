@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :sessions
 
   resources :contacts
+  patch 'contacts/:id/hidden', to: 'contacts#hide_contact'
 
   root 'contacts#index'
 end
